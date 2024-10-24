@@ -1,0 +1,3 @@
+/home/adi08/PAOO/Teme PAOO/PAOO/Tema1/CMakeFiles/mysolution.dir
+/home/adi08/PAOO/Teme PAOO/PAOO/Tema1/CMakeFiles/edit_cache.dir
+/home/adi08/PAOO/Teme PAOO/PAOO/Tema1/CMakeFiles/rebuild_cache.dir
