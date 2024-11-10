@@ -1,7 +1,6 @@
 # PAOO
 
- PAOO <br />
- -Tema 1 <br />
+-Tema 1 <br />
   ---src <br />
   ---build <br />
   ---CMakeLists.txt <br />
