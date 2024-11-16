@@ -9,7 +9,7 @@ private:
     int fabrication_year;
     std::string model_name;
 
-    //copy constructor al unui obiect Car (acum declarat private ca sa nu poate fi accesat din exterior): 
+    //copy constructor al unui obiect Car (acum declarat private ca sa nu poată fi accesat din exterior): 
     Car(const Car& other_car):
         width(other_car.width),
         height(other_car.height),
