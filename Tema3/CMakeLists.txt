@@ -8,4 +8,4 @@ SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(mysolution src/tema2_paoo.cpp)
+add_executable(mysolution src/tema3_paoo.cpp)
