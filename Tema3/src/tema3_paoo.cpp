@@ -2,15 +2,17 @@
 #include <string>
 
 
-
+class SteeringWheel{};
+  
 class Car{
 
-private: 
+protected: 
     float* width;
     float* height;
     int* fabrication_year;
     std::string* model_name;
-
+  
+    SteeringWheel* steer_wheel;
   
 public:
 
@@ -24,7 +26,7 @@ public:
     }
 
     // Metoda toString sa vizualizam atributele 
-    void toString(){
+    virtual void toString(){
       if(width && height && fabrication_year && model_name){
             std::cout<<"Car details:\n"<<
                        "width: " << *width <<
@@ -36,7 +38,7 @@ public:
     }
 
     //Destructorul unui obiect Car
-    ~Car(){
+    virtual ~Car(){
       delete width;
       delete height;
       delete fabrication_year;
@@ -88,12 +90,62 @@ public:
 
       return *this;
     }
-
+  /*
   Car& operator=(const Car& car){
-    *model_name = *car.model_name;
-    return *this;
-  }
+
+    if (this == &car){
+      return *this;
+    }
+    SteeringWheel* originalWheel = steer_wheel;
+    steer_wheel = new SteeringWheel(*car.steer_wheel);
+    delete originalWheel;
+    return *this; 
     
+  }
+  */
+    
+};
+
+class Mercedes : public Car{
+ private :
+  std::string* class_type;
+
+ public:
+  Mercedes(float width, float height, int fabrication_year, std::string model_name, std::string class_type) : Car(width, height, fabrication_year, model_name){
+    this->class_type = new std::string(class_type);
+    std::cout<<"Mercedes constructor executed"<<std::endl;
+  }
+
+  Mercedes(const Mercedes& other) : Car(other){
+    class_type = new std::string(*other.class_type);
+    std::cout<<"Mercedes copy constructor executed"<<std::endl;
+  }
+
+  Mercedes& operator=(const Mercedes& other){
+        
+        if(this == &other){
+	  return *this;
+	}
+
+	Car :: operator=(other);
+	delete class_type;
+
+	class_type = new std::string(*class_type);
+	std::cout<<"Mercedes copy assignment operator used"<<std::endl;
+      return *this;
+    }
+
+  ~Mercedes() override{
+    delete class_type;
+    std::cout<<"Mercedes destructor executed"<<std::endl;
+  }
+
+  void toString() override{
+    Car::toString();
+    std::cout<< "Class type: "<<*class_type<<std::endl;
+  }
+  
+
 };
 
 int main(void){
@@ -132,5 +184,17 @@ int main(void){
 
     car.toString();
 
+    std::cout<<"-------------------------------------"<<std::endl;
+
+    Mercedes m1(1.5, 1.3, 2022, "Mercedes C-Class", "Sedan");
+    std::cout<<"First Mercedes car detail:"<<std::endl;
+    m1.toString();
+
+    std::cout<<"Copy m1 to m2:"<<std::endl;
+
+    Mercedes m2 = m1;
+    std::cout<<"Second Mercedes car detail:"<<std::endl;
+    m2.toString();
+    
     return 0;
 }
